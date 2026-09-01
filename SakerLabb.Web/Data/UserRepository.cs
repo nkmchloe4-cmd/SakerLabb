@@ -96,7 +96,8 @@ public class UserRepository
     {
         using var connection = _db.Open();
         var command = connection.CreateCommand();
-        command.CommandText = "DELETE FROM Users WHERE Id = " + userId;
+        command.CommandText = "DELETE FROM Users WHERE Id = @userid";
+        command.Parameters.AddWithValue("@userid", userId);
         command.ExecuteNonQuery();
     }
 
